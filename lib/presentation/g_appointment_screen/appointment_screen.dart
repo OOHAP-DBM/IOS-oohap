@@ -16,7 +16,7 @@ class AppointmentScreen extends StatefulWidget {
 }
 
 class _AppointmentScreenState extends State<AppointmentScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = -1;
   int _selectedIndex2 = -1;
   bool _emptyScreen = true;
 
@@ -76,14 +76,16 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                         : Colors.white,
                                     borderRadius: BorderRadius.circular(19.r),
                                     border: Border.all(
-                                        color: CustomColors.mediumBlack)),
+                                        color: _selectedIndex == index
+                                            ? Colors.transparent
+                                            : CustomColors.mediumBlack.withOpacity(0.3))),
                                 child: CustomText.text(
                                     text: '1st \nJan',
                                     color: _selectedIndex == index
                                         ? Colors.white
                                         : CustomColors.mediumBlack,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 17.sp,
+                                    fontSize: 16.sp,
                                     textAlign: TextAlign.center),
                               ),
                             ),
@@ -129,7 +131,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                           builder: (context) =>
                                               AppointmentDetail(),
                                         ));
-                                /*    showModalBottomSheet(
+                                    /*    showModalBottomSheet(
                                       context: context,
                                       builder: (context) => AppointmentMeeting(
                                         remindMe: () {

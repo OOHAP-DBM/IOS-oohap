@@ -2,11 +2,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:oohapp/core/app_export.dart';
 import 'package:oohapp/presentation/e_home_page/profile_screen/list_builder/list_options.dart';
 import 'package:oohapp/presentation/g_appointment_screen/appointment_screen.dart';
+import 'package:oohapp/presentation/h_my_staff_screen/my_staff.dart';
+import 'package:oohapp/widgets/custom_buttons/custom_text_btn.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen>
+    with SingleTickerProviderStateMixin {
   final ProfileMenu profileMenu = ProfileMenu();
+
+  bool _expandMyStaff = false;
+
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +99,18 @@ class ProfileScreen extends StatelessWidget {
                       if (index == 0) {
                         Navigator.pushNamed(context, Routes.myBooking);
                       }
+                      if (index == 1) {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => const MyStaffScreen(),
+                            ));
+                      }
                       if (index == 3) {
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => AppointmentScreen(),
+                              builder: (context) => const AppointmentScreen(),
                             ));
                       }
                     },
@@ -85,25 +119,88 @@ class ProfileScreen extends StatelessWidget {
                         ListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(profileMenu.profileMenuComponents[index]
                                   ['icon']),
-                              const SizedBox(
-                                width: 15.0,
+                              SizedBox(
+                                width: 15.0.w,
                               ),
-                              CustomText.headlineText(
-                                  text: profileMenu.profileMenuComponents[index]
-                                      ['title']),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomText.headlineText(
+                                      text: profileMenu
+                                              .profileMenuComponents[index]
+                                          ['title']),
+                                  if (index == 1 && _expandMyStaff)
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        CustomTextBtn(
+                                            onPressed: () {},
+                                            text: '● All Staff',
+                                            fontWeight: FontWeight.w500,
+                                            textColor: Colors.black),
+                                        CustomTextBtn(
+                                            onPressed: () {},
+                                            text: '● Add Staff',
+                                            fontWeight: FontWeight.w500,
+                                            textColor: Colors.black),
+                                        CustomTextBtn(
+                                            onPressed: () {},
+                                            text: '● Manage Roles & Permission',
+                                            fontWeight: FontWeight.w500,
+                                            textColor: Colors.black),
+                                      ],
+                                    )
+                                ],
+                              ),
+                              const Spacer(),
+                              if (index == 1)
+                                Padding(
+                                  padding: EdgeInsets.only(right: 10.0.w),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        _expandMyStaff = !_expandMyStaff;
+                                      });
+                                      _controller.forward(from: 0.0);
+                                    },
+                                    borderRadius: BorderRadius.circular(50),
+                                    splashColor: Colors.green.withOpacity(0.5),
+                                    child: AnimatedBuilder(
+                                      animation: _controller,
+                                      builder: (context, child) {
+                                        return Transform.rotate(
+                                          angle: _controller.value *
+                                              (180 * 0.0174533),
+                                          // Convert degrees to radians
+                                          child: child,
+                                        );
+                                      },
+                                      child: Icon(
+                                        key: ValueKey(_expandMyStaff),
+                                        _expandMyStaff
+                                            ? Icons.keyboard_arrow_down_sharp
+                                            : Icons.keyboard_arrow_up_sharp,
+                                        size: 30.w,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                         ),
                         if (index <
                             profileMenu.profileMenuComponents.length - 1)
-                          const SizedBox(
+                          SizedBox(
                             width: double.infinity,
                             child: Padding(
-                              padding: EdgeInsets.only(left: 40.0, top: 2.0),
-                              child: Divider(
+                              padding:
+                                  EdgeInsets.only(left: 40.0.w, top: 2.0.h),
+                              child: const Divider(
                                 color: CustomColors.grey,
                               ),
                             ),
@@ -116,7 +213,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 14.0),
-              child: CustomText.captionText(text: 'v1.0'),
+              child: CustomText.text(
+                  text: 'v1.0', fontSize: 10.sp, color: Colors.red),
             ),
           ],
         ),

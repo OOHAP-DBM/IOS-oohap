@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../core/app_export.dart';
 import '../../../widgets/custom_buttons/custom_text_btn.dart';
 
@@ -5,6 +7,7 @@ class AppointmentMeeting extends StatelessWidget {
   final void Function() remindMe;
   final void Function() joinMeeting;
   final void Function() copyMeetUrl;
+  final void Function() moreButton;
   final String? meetUrl;
 
   const AppointmentMeeting(
@@ -12,7 +15,7 @@ class AppointmentMeeting extends StatelessWidget {
       required this.remindMe,
       required this.joinMeeting,
       required this.copyMeetUrl,
-      this.meetUrl});
+      this.meetUrl, required this.moreButton});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +38,11 @@ class AppointmentMeeting extends StatelessWidget {
                     text: 'Appointment Meeting',
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400),
-                Icon(
-                  Icons.more_horiz_outlined,
+                IconButton(
+                  iconSize: 25.w,
+                  onPressed: moreButton,
+                  icon: const Icon(Icons.more_horiz_outlined),
                   color: CustomColors.buttonGreen,
-                  size: 30.sp,
                 )
               ],
             ),
@@ -49,7 +53,7 @@ class AppointmentMeeting extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 6.0),
+                  padding:  EdgeInsets.only(top: 6.0.h),
                   child: Icon(
                     Icons.format_paint,
                     color: CustomColors.supportiveColor,
@@ -90,7 +94,7 @@ class AppointmentMeeting extends StatelessWidget {
                 Icon(
                   Icons.location_on_outlined,
                   color: CustomColors.buttonGreen,
-                  size: 25.sp,
+                  size: 25.w,
                 ),
                 SizedBox(
                   width: 7.w,
@@ -100,6 +104,7 @@ class AppointmentMeeting extends StatelessWidget {
                     text: meetUrl ?? 'meet.google.com/4584scs85c',
                     fontSize: 15.sp,
                     textColor: Colors.blue,
+                    underLineColor: Colors.blue,
                     decoration: TextDecoration.underline,
                     fontWeight: FontWeight.w300),
               ],

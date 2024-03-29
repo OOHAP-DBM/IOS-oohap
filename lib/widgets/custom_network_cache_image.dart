@@ -8,27 +8,33 @@ class CustomCachedNetworkImage extends StatelessWidget {
   final String imageUrl;
   final BoxFit? fit;
   final Widget Function(BuildContext, ImageProvider)? imageBuilder;
+  final double? height;
+  final double? width;
 
   const CustomCachedNetworkImage({
     super.key,
     required this.imageUrl,
     this.fit,
     this.imageBuilder,
+    this.height,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
+      height: height,
+      width: width,
       imageUrl: imageUrl,
       fit: fit ?? BoxFit.cover,
       imageBuilder: imageBuilder,
       progressIndicatorBuilder: (context, url, downloadProgress) => Center(
           child: SpinKitThreeInOut(
-            size: 20.sp,
-            color: CustomColors.buttonGreen,
-          )),
+        size: 20.sp,
+        color: CustomColors.buttonGreen,
+      )),
       errorWidget: (context, url, error) =>
-      const Icon(Icons.image_not_supported_outlined),
+          const Icon(Icons.image_not_supported_outlined),
     );
 
     // return CachedNetworkImage(

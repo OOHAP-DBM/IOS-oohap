@@ -12,7 +12,8 @@ class CustomColors {
   static const Color supportiveColor = Color(0xFF0089E1);
   static const Color buttonColor = Color(0xFF282C3E);
   static const Color blackColor = Color(0xFF1E1B18);
-  static const Color mediumBlack = Color(0xFF292929);
+ // static const Color mediumBlack = Color(0xFF292929);
+  static const Color mediumBlack = Color(0xFF6D6D6D);
   static const Color liteBlack = Color(0xFF454545);
   static const Color mediumGrey = Color(0xFF6D6D6D);
   static const Color grey = Color(0xFFDDDDDD);
