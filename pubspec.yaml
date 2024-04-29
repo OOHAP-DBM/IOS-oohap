@@ -27,7 +27,7 @@ dependencies:
   dot_navigation_bar: ^1.0.2
   custom_navigation_bar: ^0.8.2
   syncfusion_flutter_charts: ^25.1.35
-  image_picker: ^1.0.6
+  image_picker: ^1.0.7
   google_maps_flutter: ^2.5.2
   dotted_border: ^2.1.0
   syncfusion_flutter_datepicker: ^25.1.35
@@ -42,6 +42,9 @@ dependencies:
   percent_indicator: ^4.2.3
   timeline_tile: ^2.0.0
   url_launcher: ^6.2.5
+  intl_phone_field: ^3.2.0
+  lottie: ^3.1.0
+  flutter_charts: ^0.5.2
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +58,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

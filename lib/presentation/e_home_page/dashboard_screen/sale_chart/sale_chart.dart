@@ -2,6 +2,7 @@ import 'package:oohapp/core/app_export.dart';
 import 'package:oohapp/presentation/e_home_page/dashboard_screen/sale_chart/chart_sale_data.dart';
 import 'package:oohapp/presentation/e_home_page/dashboard_screen/sale_chart/model/chart_sale_model.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+/*
 
 class SaleChart extends StatelessWidget {
   SaleChart({super.key});
@@ -21,7 +22,8 @@ class SaleChart extends StatelessWidget {
      /// I comment this due to error after update package
 
 
-     /* series: <ChartSeries>[
+     */
+/* series: <ChartSeries>[
         BarSeries<SaleData, String>(
           dataSource: chartSaleData.getChartData(),
           xValueMapper: (SaleData sales, _) => sales.weekDay,
@@ -29,11 +31,13 @@ class SaleChart extends StatelessWidget {
           dataLabelSettings: const DataLabelSettings(isVisible: true),
         ),
         //  FastLineSeries(dataSource: chartSaleData.getChartData(), xValueMapper: , yValueMapper: yValueMapper)
-      ],*/
+      ],*//*
+
 
       ///
     );
-    /* return SfCartesianChart(
+    */
+/* return SfCartesianChart(
       title: ChartTitle(text: 'Weekly Sale'),
       primaryXAxis: NumericAxis(
         // Set labels for the X-axis
@@ -50,6 +54,13 @@ class SaleChart extends StatelessWidget {
         ),
       ],
     );
-*/
+*//*
+
   }
 }
+*/
+
+
+
+
+

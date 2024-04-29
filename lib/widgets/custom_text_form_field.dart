@@ -4,7 +4,7 @@ import 'package:oohapp/core/constants/global_cubit/character_count_cubit.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
-      {Key? key,
+      {super.key,
       this.onPressed,
       this.color,
       this.text,
@@ -26,15 +26,19 @@ class CustomTextFormField extends StatelessWidget {
       this.placeholder,
       this.showCharacterCount = false, // New property for character count
       this.onChanged,
-      this.newcolor,
+      this.newColor,
       this.validator,
-      this.requiredsign // New property for onChanged
-      })
-      : super(key: key);
+      this.requiredSign,
+      this.onTap,
+      this.enabled,
+      this.readOnly,
+      this.contentPadding,
+      this.isDense // New property for onChanged
+      });
 
   final VoidCallback? onPressed;
   final Color? color;
-  final Color? newcolor;
+  final Color? newColor;
   final String? text;
   final Widget? child;
   final double? height;
@@ -55,7 +59,12 @@ class CustomTextFormField extends StatelessWidget {
   final bool? showCharacterCount;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
-  final bool? requiredsign;
+  final bool? requiredSign;
+  final void Function()? onTap;
+  final bool? enabled;
+  final bool? readOnly;
+  final EdgeInsetsGeometry? contentPadding;
+  final bool? isDense;
 
   // New property for onChanged
 
@@ -72,7 +81,7 @@ class CustomTextFormField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (requiredsign == true)
+          if (requiredSign == true)
             Row(
               children: [
                 CustomText.calloutText(
@@ -96,11 +105,14 @@ class CustomTextFormField extends StatelessWidget {
           Container(
             // height: height ?? ScaleSize.height(5.66),
             decoration: BoxDecoration(
-              color: newcolor,
+              color: newColor,
             ),
             child: Stack(
               children: [
                 TextFormField(
+                  readOnly: readOnly!,
+                  enabled: enabled,
+                  onTap: onTap,
                   validator: validator,
                   onTapOutside: (event) {
                     FocusManager.instance.primaryFocus?.unfocus();
@@ -124,10 +136,11 @@ class CustomTextFormField extends StatelessWidget {
                     focusColor: CustomColors.inactiveButton,
                     labelStyle:
                         const TextStyle(color: CustomColors.inactiveButton),
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 2.0,
-                      horizontal: 8.0,
-                    ),
+                    contentPadding: contentPadding ??
+                        const EdgeInsets.symmetric(
+                          vertical: 2.0,
+                          horizontal: 8.0,
+                        ),
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(
                         color: CustomColors.blackColor,
@@ -149,6 +162,11 @@ class CustomTextFormField extends StatelessWidget {
                     suffixIconColor: CustomColors.inactiveButton,
                     prefixIconColor: CustomColors.inactiveButton,
                     suffixIcon: suffixIcon,
+                    prefixIconConstraints:
+                        const BoxConstraints(minWidth: 15, minHeight: 15),
+                    suffixIconConstraints:
+                        const BoxConstraints(minWidth: 15, minHeight: 15),
+                    isDense: isDense,
                   ),
                 ),
               ],

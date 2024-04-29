@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:oohapp/presentation/h_my_staff_screen/staff_creation.dart';
 import 'package:oohapp/widgets/custom_appbar/detail_screen_app_bar.dart';
 import 'package:oohapp/widgets/custom_bottom_model_sheet.dart';
 import 'package:oohapp/widgets/custom_buttons/custom_text_btn.dart';
@@ -31,7 +32,13 @@ class _MyStaffScreenState extends State<MyStaffScreen> {
           Padding(
               padding: EdgeInsets.only(right: 16.0.w),
               child: CustomTextBtn(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const StaffCreation(),
+                        ));
+                  },
                   text: '+ Add New',
                   textColor: CustomColors.buttonGreen))
         ],
@@ -92,188 +99,100 @@ class _MyStaffScreenState extends State<MyStaffScreen> {
                         CustomBottomModelSheet.showSheet(context, [
                           StatefulBuilder(
                             builder: (BuildContext context,
-                                void Function(void Function())
-                                updateWidget) =>
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomText.text(
-                                      text: 'Sort By',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15.sp,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        ActionChip(
-                                          avatar: Icon(
-                                            selectedDateValue == 0
-                                                ? Icons.radio_button_checked
-                                                : Icons.radio_button_off,
-                                            color: selectedDateValue == 0
-                                                ? CustomColors.buttonGreen
-                                                : CustomColors.grey,
-                                            size: 22.w,
-                                          ),
-                                          label: CustomText.text(
-                                              text: 'Supervisor',
-                                              color: CustomColors.buttonColor),
-                                          onPressed: () => updateWidget(() {
-                                            selectedDateValue == 0;
-                                          }),
-                                          backgroundColor: Colors.transparent,
-                                          side: const BorderSide(
-                                              color: Colors.transparent),
-                                          padding: EdgeInsets.only(right: 10.w),
-                                        ),
-                                        SizedBox(
-                                          height: 7.h,
-                                        ),
-                                        Container(
-                                          color: Colors.grey[200],
-                                          height: 1.5.h,
-                                        ),
-                                        ActionChip(
-                                          avatar: Icon(
-                                            selectedDateValue == 1
-                                                ? Icons.radio_button_checked
-                                                : Icons.radio_button_off,
-                                            color: selectedDateValue == 1
-                                                ? CustomColors.buttonGreen
-                                                : CustomColors.grey,
-                                            size: 22.w,
-                                          ),
-                                          label: CustomText.text(
-                                              text: 'Manager',
-                                              color: CustomColors.buttonColor),
-                                          onPressed: () => updateWidget(() {
-                                            selectedDateValue == 1;
-                                          }),
-                                          backgroundColor: Colors.transparent,
-                                          side: const BorderSide(
-                                              color: Colors.transparent),
-                                          padding: EdgeInsets.only(right: 10.w),
-                                        ),
-                                        SizedBox(
-                                          height: 7.h,
-                                        ),
-                                        Container(
-                                          color: Colors.grey[200],
-                                          height: 1.5.h,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 15.h,
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topRight,
-                                      child: CustomButton(
-                                        onTap: () => Navigator.pop(context),
-                                        text: 'Apply',
-                                        width: size.width * 0.35,
-                                        backgroundColor: CustomColors.buttonColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                          ),
-                        ]);
-                     /*   CustomShowDialog.decoratedAlertDialog(
-                          context,
-                          content: StatefulBuilder(
-                            builder: (BuildContext context,
                                     void Function(void Function())
                                         updateWidget) =>
                                 Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText.text(
+                                  text: 'Sort By',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.sp,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    CustomText.text(
-                                      text: 'Sort By',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15.sp,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        ActionChip(
-                                          avatar: Icon(
-                                            selectedDateValue == 0
-                                                ? Icons.radio_button_checked
-                                                : Icons.radio_button_off,
-                                            color: selectedDateValue == 0
-                                                ? CustomColors.buttonGreen
-                                                : CustomColors.grey,
-                                            size: 22.w,
-                                          ),
-                                          label: CustomText.text(
-                                              text: 'Supervisor',
-                                              color: CustomColors.buttonColor),
-                                          onPressed: () => updateWidget(() {
-                                            selectedDateValue == 0;
-                                          }),
-                                          backgroundColor: Colors.transparent,
-                                          side: const BorderSide(
-                                              color: Colors.transparent),
-                                          padding: EdgeInsets.only(right: 10.w),
-                                        ),
-                                        SizedBox(
-                                          height: 7.h,
-                                        ),
-                                        Container(
-                                          color: Colors.grey[200],
-                                          height: 1.5.h,
-                                        ),
-                                        ActionChip(
-                                          avatar: Icon(
-                                            selectedDateValue == 1
-                                                ? Icons.radio_button_checked
-                                                : Icons.radio_button_off,
-                                            color: selectedDateValue == 1
-                                                ? CustomColors.buttonGreen
-                                                : CustomColors.grey,
-                                            size: 22.w,
-                                          ),
-                                          label: CustomText.text(
-                                              text: 'Manager',
-                                              color: CustomColors.buttonColor),
-                                          onPressed: () => updateWidget(() {
-                                            selectedDateValue == 1;
-                                          }),
-                                          backgroundColor: Colors.transparent,
-                                          side: const BorderSide(
-                                              color: Colors.transparent),
-                                          padding: EdgeInsets.only(right: 10.w),
-                                        ),
-                                        SizedBox(
-                                          height: 7.h,
-                                        ),
-                                        Container(
-                                          color: Colors.grey[200],
-                                          height: 1.5.h,
-                                        ),
-                                      ],
+                                    ActionChip(
+                                      avatar: Icon(
+                                        selectedDateValue == 0
+                                            ? Icons.radio_button_checked
+                                            : Icons.radio_button_off,
+                                        color: selectedDateValue == 0
+                                            ? CustomColors.buttonGreen
+                                            : CustomColors.grey,
+                                        size: 22.w,
+                                      ),
+                                      label: CustomText.text(
+                                          text: 'Supervisor',
+                                          color: CustomColors.buttonColor),
+                                      onPressed: () {
+                                        updateWidget(() {
+                                          selectedDateValue =
+                                              0; // Assign the value instead of comparing
+                                        });
+                                      },
+                                      backgroundColor: Colors.transparent,
+                                      side: const BorderSide(
+                                          color: Colors.transparent),
+                                      padding: EdgeInsets.only(right: 10.w),
                                     ),
                                     SizedBox(
-                                      height: 15.h,
+                                      height: 7.h,
                                     ),
-                                    Align(
-                                      alignment: Alignment.topRight,
-                                      child: CustomButton(
-                                        onTap: () => Navigator.pop(context),
-                                        text: 'Apply',
-                                        width: size.width * 0.35,
-                                        backgroundColor: CustomColors.buttonColor,
+                                    Container(
+                                      color: Colors.grey[200],
+                                      height: 1.5.h,
+                                    ),
+                                    ActionChip(
+                                      avatar: Icon(
+                                        selectedDateValue == 1
+                                            ? Icons.radio_button_checked
+                                            : Icons.radio_button_off,
+                                        color: selectedDateValue == 1
+                                            ? CustomColors.buttonGreen
+                                            : CustomColors.grey,
+                                        size: 22.w,
                                       ),
+                                      label: CustomText.text(
+                                          text: 'Manager',
+                                          color: CustomColors.buttonColor),
+                                      onPressed: () {
+                                        updateWidget(() {
+                                          selectedDateValue =
+                                              1; // Assign the value instead of comparing
+                                        });
+                                      },
+                                      backgroundColor: Colors.transparent,
+                                      side: const BorderSide(
+                                          color: Colors.transparent),
+                                      padding: EdgeInsets.only(right: 10.w),
+                                    ),
+                                    SizedBox(
+                                      height: 7.h,
+                                    ),
+                                    Container(
+                                      color: Colors.grey[200],
+                                      height: 1.5.h,
                                     ),
                                   ],
                                 ),
-                          ),
-                        );*/
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: CustomButton(
+                                    onTap: () => Navigator.pop(context),
+                                    text: 'Apply',
+                                    width: size.width * 0.35,
+                                    backgroundColor: CustomColors.buttonColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ]);
                       },
                       icon: const Icon(Icons.filter_alt_outlined),
                     ),
@@ -301,8 +220,8 @@ class _MyStaffScreenState extends State<MyStaffScreen> {
                             ),
                             child: const ClipOval(
                               child: CustomCachedNetworkImage(
-                                  width: 50,
-                                  height: 50,
+                                  width: 45,
+                                  height: 45,
                                   fit: BoxFit.cover,
                                   imageUrl:
                                       'https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
@@ -318,6 +237,15 @@ class _MyStaffScreenState extends State<MyStaffScreen> {
                           contentPadding:
                               EdgeInsets.symmetric(horizontal: 10.w),
                           visualDensity: const VisualDensity(vertical: 1),
+                          trailing: IconButton(
+                            onPressed: () {
+
+                            },
+                            icon: Icon(
+                              CupertinoIcons.delete_simple,
+                              size: 15.w,
+                            ),
+                          ),
                         ),
                       ))
             ],

@@ -25,10 +25,10 @@ class _AppointmentDetailState extends State<AppointmentDetail> {
   String imageUrl =
       'https://images.unsplash.com/photo-1708616748538-bdd66d6a9e25?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
-  final String _meetUrl = 'https://meet.google.com/ycp-yvjg-trj';
+  final String _textCopy = 'https://meet.google.com/ycp-yvjg-trj';
 
   Future<void> _openMeetUrl(BuildContext context) async {
-    var url = Uri.parse(_meetUrl);
+    var url = Uri.parse(_textCopy);
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
       if (context.mounted) {
@@ -44,9 +44,9 @@ class _AppointmentDetailState extends State<AppointmentDetail> {
 
   /// function for the copy meet link
 
-  void _copyMeetLink() {
-    Clipboard.setData(ClipboardData(text: _meetUrl));
-    CustomSnackBar.showCustomSnackBar(context, 'Url copied $_meetUrl',
+  void _copyText() {
+    Clipboard.setData(ClipboardData(text: _textCopy));
+    CustomSnackBar.showCustomSnackBar(context, 'Url copied $_textCopy',
         second: 3, backgroundColor: Colors.blue);
   }
 
@@ -178,10 +178,11 @@ class _AppointmentDetailState extends State<AppointmentDetail> {
                   _openMeetUrl(context);
                 },
                 copyMeetUrl: () {
-                  _copyMeetLink();
+                  _copyText();
                 },
-                meetUrl: _meetUrl,
+                meetUrl: _textCopy,
                 moreButton: () {
+
                   showModalBottomSheet(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
@@ -200,7 +201,7 @@ class _AppointmentDetailState extends State<AppointmentDetail> {
                                       icon: CupertinoIcons.square_on_square,
                                       label: 'Copy link',
                                       onTap: () {
-                                        _copyMeetLink();
+                                        _copyText();
                                         Navigator.pop(context);
                                       }),
                                   AppointmentPopUpMenu(

@@ -72,7 +72,7 @@ class _FirstHoardingLocationEntryPageState
                     ),
                     CustomTextFormField(
                       controller: hoardingaddressController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Hoarding Address',
                       maxLength: 10,
                       //  keyboardType: TextInputType.none,
@@ -87,7 +87,7 @@ class _FirstHoardingLocationEntryPageState
                     ),
                     CustomTextFormField(
                       controller: pincodeController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Pincode',
                       maxLength: 10,
                       keyboardType: TextInputType.number,
@@ -102,7 +102,7 @@ class _FirstHoardingLocationEntryPageState
                     ),
                     CustomTextFieldSelector(
                       controller: cityController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'City',
                       choices: ['Lucknow', 'kanpur', 'varanasi', 'delhi'],
                       hintText: 'Lucknow',
@@ -116,7 +116,7 @@ class _FirstHoardingLocationEntryPageState
                     ),
                     CustomTextFieldSelector(
                       controller: stateController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'State',
                       choices: ['Bihar', 'Up', 'delhi', 'dehradun'],
                       hintText: 'uttar pradesh',
@@ -130,7 +130,7 @@ class _FirstHoardingLocationEntryPageState
                     ),
                     CustomTextFieldSelector(
                       controller: countryController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Country',
                       choices: ['India', 'Pakistan', 'Russia', 'Afghanistan'],
                       hintText: 'India',
@@ -144,7 +144,7 @@ class _FirstHoardingLocationEntryPageState
                     ),
                     CustomTextFormField(
                       controller: landmarkController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Landmark',
                       //  maxLength: 10,
                       //  keyboardType: TextInputType.number,
@@ -159,7 +159,7 @@ class _FirstHoardingLocationEntryPageState
                     ),
                     CustomTextFormField(
                       controller: latitudeController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Latitude',
                       maxLength: 10,
                       // keyboardType: TextInputType.streetAddress,
@@ -174,7 +174,7 @@ class _FirstHoardingLocationEntryPageState
                     ),
                     CustomTextFormField(
                       controller: longitudeController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Longitude',
                       maxLength: 10,
                       hintText: '10.012.0211.2',

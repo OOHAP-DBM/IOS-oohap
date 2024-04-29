@@ -1,4 +1,9 @@
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:oohapp/core/app_export.dart';
+import 'package:oohapp/core/constants/app_constant.dart';
 import 'package:oohapp/presentation/e_home_page/dashboard_screen/sale_chart/sale_chart.dart';
 import 'dummy_data/item_list.dart';
 
@@ -17,9 +22,7 @@ class DashboardScreen extends StatelessWidget {
         ),
         actions: [
           CircularButton(
-            onPressed: () {
-
-            },
+            onPressed: () {},
             icon: Icons.notifications_none,
             iconColor: CustomColors.blackColor,
           ),
@@ -29,16 +32,14 @@ class DashboardScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: CustomCircleImage(
-              onTap: () {
-
-              },
+              onTap: () {},
               imagePath: ImageConstant.baby,
               fit: BoxFit.fill,
             ),
           ),
         ],
       ),
-      body: SingleChildScrollView(
+      /* body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,9 +101,9 @@ class DashboardScreen extends StatelessWidget {
 
             // List here
 
-            /*  const SizedBox(
+            */ /*  const SizedBox(
               height: 20,
-            ),*/
+            ),*/ /*
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 14.0, vertical: 16.0),
@@ -141,9 +142,9 @@ class DashboardScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: itemColors[index % itemColors.length],
                               // borderRadius: BorderRadius.circular(8.0),
-                          /*    border: Border.all(
+                          */ /*    border: Border.all(
                                 color: CustomColors.blackColor,
-                              ),*/
+                              ),*/ /*
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -175,6 +176,173 @@ class DashboardScreen extends StatelessWidget {
                 ],
               ),
             ),
+          ],
+        ),
+      ),*/
+
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(
+                  Icons.sunny,
+                  color: Colors.orangeAccent,
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                CustomText.text(
+                    text: "${AppConstant.getTimeMessage()} Robert",
+                    fontSize: 15.sp),
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            SizedBox(
+              width: size.width,
+              child: DottedBorder(
+                  color: CustomColors.inactiveButton,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CustomText.text(
+                            text: "No hoarding added", fontSize: 15.sp),
+                        CustomButton(
+                          onTap: () {},
+                          width: size.width * 0.45,
+                          fontSize: null,
+                          text: '+ Add Hoarding',
+                          backgroundColor: Colors.black,
+                        )
+                      ],
+                    ),
+                  )),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            CustomText.text(text: "Your Dashboard", fontSize: 14.sp),
+            SizedBox(height: 10.h),
+            GridView.builder(
+                physics: const ScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: itemList.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1 / 0.7,
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
+                ),
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: size.width * 0.35,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+                    decoration: BoxDecoration(
+                      //  color: containerColor,
+                      color: itemColors[index % itemColors.length],
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.r),
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText.text(
+                            text: itemList[index]['title'].toString(),
+                            //    text: "Total\nEarnings",
+                            fontSize: 14.sp),
+                        SizedBox(height: 10.h),
+                        Expanded(
+                          child: Align(
+                            alignment: AlignmentDirectional.bottomEnd,
+                            child: CustomText.text(
+                                text: index == 0
+                                    ? "₹ ${itemList[index]['value'].toString()}"
+                                    : itemList[index]['value'].toString(),
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+
+            // Sale chart widget here *************
+            /*  SizedBox(
+              height: 10.h,
+            ),*/
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                    child: CustomText.text(
+                        text: "Sales Summary", fontSize: 14.sp)),
+                CustomText.text(text: "Weekly", fontSize: 13.sp),
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.bar_chart_outlined),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        CustomText.text(text: "10", fontSize: 15.sp)
+                      ],
+                    ),
+                    CustomText.text(
+                      text: "Total Sales",
+                      fontSize: 12.sp,
+                      color: CustomColors.liteBlack,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.bar_chart_outlined),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        CustomText.text(text: "2", fontSize: 15.sp)
+                      ],
+                    ),
+                    CustomText.text(
+                      text: "Avg. Sales per Day",
+                      fontSize: 12.sp,
+                      color: CustomColors.liteBlack,
+                    )
+                  ],
+                ),
+              ],
+            ),
+
+            //SaleChart(),
           ],
         ),
       ),

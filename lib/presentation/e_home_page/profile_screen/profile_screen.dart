@@ -3,7 +3,10 @@ import 'package:oohapp/core/app_export.dart';
 import 'package:oohapp/presentation/e_home_page/profile_screen/list_builder/list_options.dart';
 import 'package:oohapp/presentation/g_appointment_screen/appointment_screen.dart';
 import 'package:oohapp/presentation/h_my_staff_screen/my_staff.dart';
+import 'package:oohapp/presentation/h_my_staff_screen/staff_creation.dart';
 import 'package:oohapp/widgets/custom_buttons/custom_text_btn.dart';
+
+import '../../h_my_staff_screen/manage_permission_screen/manage_permission_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -139,17 +142,31 @@ class _ProfileScreenState extends State<ProfileScreen>
                                           CrossAxisAlignment.start,
                                       children: [
                                         CustomTextBtn(
-                                            onPressed: () {},
+                                            onPressed: () {
+
+                                            },
                                             text: '● All Staff',
                                             fontWeight: FontWeight.w500,
                                             textColor: Colors.black),
                                         CustomTextBtn(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                    builder: (context) => const StaffCreation(),
+                                                  ));
+                                            },
                                             text: '● Add Staff',
                                             fontWeight: FontWeight.w500,
                                             textColor: Colors.black),
                                         CustomTextBtn(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                    builder: (context) => const ManagePermissionsScreen(),
+                                                  ));
+                                            },
                                             text: '● Manage Roles & Permission',
                                             fontWeight: FontWeight.w500,
                                             textColor: Colors.black),
@@ -159,37 +176,37 @@ class _ProfileScreenState extends State<ProfileScreen>
                               ),
                               const Spacer(),
                               if (index == 1)
-                                Padding(
-                                  padding: EdgeInsets.only(right: 10.0.w),
-                                  child: InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        _expandMyStaff = !_expandMyStaff;
-                                      });
-                                      _controller.forward(from: 0.0);
-                                    },
-                                    borderRadius: BorderRadius.circular(50),
-                                    splashColor: Colors.green.withOpacity(0.5),
-                                    child: AnimatedBuilder(
-                                      animation: _controller,
-                                      builder: (context, child) {
-                                        return Transform.rotate(
-                                          angle: _controller.value *
-                                              (180 * 0.0174533),
-                                          // Convert degrees to radians
-                                          child: child,
-                                        );
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 10.0.w),
+                                    child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          _expandMyStaff = !_expandMyStaff;
+                                        });
+                                        _controller.forward(from: 0.0);
                                       },
-                                      child: Icon(
-                                        key: ValueKey(_expandMyStaff),
-                                        _expandMyStaff
-                                            ? Icons.keyboard_arrow_down_sharp
-                                            : Icons.keyboard_arrow_up_sharp,
-                                        size: 30.w,
+                                      borderRadius: BorderRadius.circular(50),
+                                      splashColor: Colors.green.withOpacity(0.5),
+                                      child: AnimatedBuilder(
+                                        animation: _controller,
+                                        builder: (context, child) {
+                                          return Transform.rotate(
+                                            angle: _controller.value *
+                                                (180 * 0.0174533),
+                                            // Convert degrees to radians
+                                            child: child,
+                                          );
+                                        },
+                                        child: Icon(
+                                          key: ValueKey(_expandMyStaff),
+                                          _expandMyStaff
+                                              ? Icons.keyboard_arrow_down_sharp
+                                              : Icons.keyboard_arrow_up_sharp,
+                                          size: 30.w,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                             ],
                           ),
                         ),

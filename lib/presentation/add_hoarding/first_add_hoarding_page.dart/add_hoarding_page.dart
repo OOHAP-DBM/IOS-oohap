@@ -69,7 +69,7 @@ List<String> getAllCountryNames() {
                     ),
                     CustomTextFormField(
                       controller: gstinController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'GSTIN No',
                       // maxLength: 15,
                       keyboardType: TextInputType.number,
@@ -84,7 +84,7 @@ List<String> getAllCountryNames() {
                       height: 15.0,
                     ),
                     CustomTextFormField(
-                      requiredsign: true,
+                      requiredSign: true,
                       controller: businessnameController,
                       placeholder: 'Business Name',
                       // maxLength: 15,
@@ -100,7 +100,7 @@ List<String> getAllCountryNames() {
                       height: 15.0,
                     ),
                     CustomTextFieldSelector(
-                      requiredsign: true,
+                      requiredSign: true,
                       
                       controller: businesstypeController,
                       placeholder: 'Business Type',
@@ -152,7 +152,7 @@ List<String> getAllCountryNames() {
                     BlocBuilder<CharacterCountCubit, int>(
                         builder: (context, characterCount) {
                       return CustomTextFormField(
-                        requiredsign: true,
+                        requiredSign: true,
                         controller: streetController,
                         placeholder: 'Street Address',
                         keyboardType: TextInputType.name,
@@ -173,7 +173,7 @@ List<String> getAllCountryNames() {
                       height: 15.0,
                     ),
                     CustomTextFormField(
-                      requiredsign: true,
+                      requiredSign: true,
                       controller: pincodeController,
                       placeholder: 'Pincode',
                       keyboardType: TextInputType.name,
@@ -189,7 +189,7 @@ List<String> getAllCountryNames() {
                       height: 15.0,
                     ),
                     CustomTextFieldSelector(
-                      requiredsign: true,
+                      requiredSign: true,
                       controller: cityController,
                       placeholder: 'City',
 
@@ -207,7 +207,7 @@ List<String> getAllCountryNames() {
                       height: 15,
                     ),
                     CustomTextFieldSelector(
-                      requiredsign: true,
+                      requiredSign: true,
                       controller: stateController,
                       placeholder: 'State',
                       // maxLength: 15,
@@ -225,7 +225,7 @@ List<String> getAllCountryNames() {
                       height: 15,
                     ),
                     CustomTextFieldSelector(
-                      requiredsign: true,
+                      requiredSign: true,
                       controller: countryController,
                       placeholder: 'Country',
                       // maxLength: 15,

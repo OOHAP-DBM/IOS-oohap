@@ -107,7 +107,7 @@ class _FinalAddHoardingSecondPageState
                         height: 16,
                       ),
                       CustomTextFormField(
-                        requiredsign: true,
+                        requiredSign: true,
                         onChanged: (value) {
                           cubit.onChangedsetbaseprice(value);
                         },
@@ -122,7 +122,7 @@ class _FinalAddHoardingSecondPageState
                         height: 15,
                       ),
                       CustomTextFormField(
-                        requiredsign: true,
+                        requiredSign: true,
                         placeholder: 'Printing Charges',
                         hintText: '₹',
                         keyboardType: TextInputType.number,
@@ -137,7 +137,7 @@ class _FinalAddHoardingSecondPageState
                         height: 15,
                       ),
                       CustomTextFormField(
-                        requiredsign: true,
+                        requiredSign: true,
                         placeholder: 'Mounting Charges',
                         hintText: '₹',
                         keyboardType: TextInputType.number,
@@ -152,7 +152,7 @@ class _FinalAddHoardingSecondPageState
                         height: 15,
                       ),
                       CustomTextFormField(
-                        requiredsign: true,
+                        requiredSign: true,
                         placeholder: 'Designing Charges',
                         hintText: '₹',
                         keyboardType: TextInputType.number,
@@ -280,7 +280,7 @@ class _FinalAddHoardingSecondPageState
             children: [
               CustomTextFormField(
                 controller: gstController,
-                requiredsign: true,
+                requiredSign: true,
                 placeholder: 'GST(%)',
                 hintText: '18%',
                 keyboardType: TextInputType.number,
@@ -295,7 +295,7 @@ class _FinalAddHoardingSecondPageState
               CustomTextFormField(
                 controller: igstController,
                 keyboardType: TextInputType.number,
-                requiredsign: true,
+                requiredSign: true,
                 placeholder: 'IGST(%)',
                 hintText: '18%',
                 onChanged: (value) {
@@ -309,10 +309,10 @@ class _FinalAddHoardingSecondPageState
               CustomTextFormField(
                 controller: totalpricewithtaxController,
                 keyboardType: TextInputType.number,
-                requiredsign: true,
+                requiredSign: true,
                 placeholder: 'Total Price with Tax',
                 hintText: '₹ 2,36,611',
-                newcolor: const Color(0xFFFFB753),
+                newColor: const Color(0xFFFFB753),
                 onChanged: (value) {
                   cubit.onChangedtotalpricewithtax(value);
                 },
@@ -324,7 +324,7 @@ class _FinalAddHoardingSecondPageState
               ),
               CustomTextFormField(
                 controller: discounttypeController,
-                requiredsign: true,
+                requiredSign: true,
                 placeholder: 'Discount Type',
                 hintText: 'Amount',
                 keyboardType: TextInputType.number,
@@ -340,7 +340,7 @@ class _FinalAddHoardingSecondPageState
               CustomTextFormField(
                 controller: discountpercentageController,
                 keyboardType: TextInputType.number,
-                requiredsign: true,
+                requiredSign: true,
                 placeholder: 'Discount Percentage/Amount',
                 hintText: '₹ 40,111',
                 onChanged: (value) {
@@ -355,10 +355,10 @@ class _FinalAddHoardingSecondPageState
               CustomTextFormField(
                 controller: discountedpriceController,
                 keyboardType: TextInputType.number,
-                requiredsign: true,
+                requiredSign: true,
                 placeholder: 'Discounted Price',
                 hintText: '₹ 36,000',
-                newcolor: const Color(0xFFFFB753),
+                newColor: const Color(0xFFFFB753),
                 onChanged: (value) {
                   cubit.onChangeddiscountprice(value);
                 },

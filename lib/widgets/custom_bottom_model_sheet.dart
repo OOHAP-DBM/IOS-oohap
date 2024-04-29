@@ -10,7 +10,8 @@ class CustomBottomModelSheet {
         padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.9),
+              color: bgColor,
+              //color: Colors.white.withOpacity(0.9),
               borderRadius: BorderRadius.circular(8.r)),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.h),

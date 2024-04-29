@@ -202,7 +202,7 @@ class _SecondAddHoardingPageState extends State<SecondAddHoardingPage> {
                     const SizedBox(height: 7),
                     CustomTextFieldSelector(
                       controller: banknameController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Bank Name',
                       // maxLength: 15,
                       // keyboardType: TextInputType.number,
@@ -219,7 +219,7 @@ class _SecondAddHoardingPageState extends State<SecondAddHoardingPage> {
                     ),
                     CustomTextFormField(
                       controller: accountholdernameController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Account Holder Name',
                       // maxLength: 15,
                       keyboardType: TextInputType.name,
@@ -235,7 +235,7 @@ class _SecondAddHoardingPageState extends State<SecondAddHoardingPage> {
                     ),
                     CustomTextFormField(
                       controller: accountController,
-                      requiredsign: true,
+                      requiredSign: true,
                       placeholder: 'Account Number',
                       // maxLength: 15,
                       keyboardType: TextInputType.phone,

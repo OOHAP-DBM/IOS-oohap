@@ -85,7 +85,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                         ? Colors.white
                                         : CustomColors.mediumBlack,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     textAlign: TextAlign.center),
                               ),
                             ),

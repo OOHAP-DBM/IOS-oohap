@@ -173,7 +173,7 @@ class _FinalAddHoardingFirstPageState extends State<FinalAddHoardingFirstPage> {
                     ),
                     CustomTextFormField(
                       placeholder: 'Hoarding Title',
-                      requiredsign: true,
+                      requiredSign: true,
                       hintText: 'Enter title',
                       maxLength: 34,
                       onChanged: (value){
@@ -202,7 +202,7 @@ class _FinalAddHoardingFirstPageState extends State<FinalAddHoardingFirstPage> {
                       height: 16,
                     ),
                     CustomTextFormField(
-                      requiredsign: true,
+                      requiredSign: true,
                       onChanged: (value){
                         cubit.onChangedmeasurementlength(value);
                       },
@@ -219,7 +219,7 @@ class _FinalAddHoardingFirstPageState extends State<FinalAddHoardingFirstPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomTextFormField(
-                          requiredsign: true,
+                          requiredSign: true,
                           onChanged: (value){
                             cubit.onChangedhoardingwidth(value);
                           },
@@ -233,7 +233,7 @@ class _FinalAddHoardingFirstPageState extends State<FinalAddHoardingFirstPage> {
                         ),
                         CustomTextFormField(
                           placeholder: 'Hoarding Height',
-                          requiredsign: true,
+                          requiredSign: true,
                           onChanged: (value){
                             cubit.onChangedhoardingheight(value);
                           },
@@ -252,7 +252,7 @@ class _FinalAddHoardingFirstPageState extends State<FinalAddHoardingFirstPage> {
                       placeholder: 'Size Preview',
                       hintText: 'e.g. 10×20sq.ft',
                       controller: sizeController,
-                      newcolor: Colors.grey,
+                      newColor: Colors.grey,
                     ),
                     SizedBox(
                       height: 15,

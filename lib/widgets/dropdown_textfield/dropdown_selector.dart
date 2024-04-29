@@ -2,7 +2,7 @@ import 'package:oohapp/core/app_export.dart';
 
 class CustomTextFieldSelector extends StatelessWidget {
   const CustomTextFieldSelector(
-      {Key? key,
+      {super.key,
       this.onPressed,
       this.color,
       this.text,
@@ -25,12 +25,11 @@ class CustomTextFieldSelector extends StatelessWidget {
       this.selectedChoice,
  
       this.validator,
-      this.requiredsign,
+      this.requiredSign,
       this.choiceImages,
      
 
-      this.onChanged})
-      : super(key: key);
+      this.onChanged});
 
   final VoidCallback? onPressed;
   final Color? color;
@@ -52,7 +51,7 @@ class CustomTextFieldSelector extends StatelessWidget {
   final String? placeholder;
   final List<String>? choices;
   final String? selectedChoice;
-  final bool? requiredsign;
+  final bool? requiredSign;
     final Map<String, String>? choiceImages; 
 
   
@@ -66,7 +65,7 @@ class CustomTextFieldSelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-    if(requiredsign==true)
+    if(requiredSign==true)
      Row(
       children: [
              CustomText.calloutText(
@@ -84,10 +83,10 @@ class CustomTextFieldSelector extends StatelessWidget {
             text: placeholder,
             color: CustomColors.blackColor,
           ),
-        SizedBox(height: 8),
+        SizedBox(height: 8.h),
         DropdownButtonFormField<String>(
           validator: validator,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             isDense: true,
