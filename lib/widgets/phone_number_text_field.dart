@@ -1,10 +1,13 @@
+import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../core/app_export.dart';
 
 class CustomPhoneNumberTextField extends StatelessWidget {
   final TextEditingController? controller;
+ final void Function(String?)? onChanged;
 
-  const CustomPhoneNumberTextField({super.key, this.controller});
+   const CustomPhoneNumberTextField(
+      {super.key, this.controller, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +30,7 @@ class CustomPhoneNumberTextField extends StatelessWidget {
           height: 5.0.h,
         ),
         IntlPhoneField(
+
           controller: controller,
           decoration: InputDecoration(
             fillColor: Colors.transparent,
@@ -61,8 +65,8 @@ class CustomPhoneNumberTextField extends StatelessWidget {
           ),
           initialCountryCode: 'IN',
           keyboardType: TextInputType.phone,
-          onChanged: (phone) {
-            print(phone.completeNumber);
+          onChanged: (value){
+            onChanged;
           },
         ),
       ],

@@ -52,6 +52,27 @@ class ImageConstant {
 
   static String oIcon='$imagePath/o_icon.png';
 
+  static String newCategoryImagePath = 'assets/images/dashboard_icon/new';
+
+  //static String a = '$newCategoryImagePath/B.png';
+  static String uniPole = '$newCategoryImagePath/C.png';
+  static String busShelter = '$newCategoryImagePath/D.png';
+  static String overBridge = '$newCategoryImagePath/E.png';
+  static String led = '$newCategoryImagePath/F.png';
+  static String publicUtility = '$newCategoryImagePath/G.png';
+  static String pollKioske = '$newCategoryImagePath/H.png';
+  static String wallWrap = '$newCategoryImagePath/I.png';
+  static String buildings = '$newCategoryImagePath/J.png';
+
+  // Payment icons
+  static String creditCard = '$imagePath/card-cvv-icon.png';
+  static String upi = '$imagePath/upi-icon.png';
+  static String netBanking = '$imagePath/bank-deposit-icon.png';
+  static String upiApps = '$imagePath/upi-icon.png';
+
+  // New
+  static String newBadge = '$imagePath/new_badge.png';
+
 
 
 }

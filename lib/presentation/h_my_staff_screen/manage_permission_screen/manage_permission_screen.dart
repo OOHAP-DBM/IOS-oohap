@@ -16,7 +16,7 @@ class ManagePermissionsScreen extends StatefulWidget {
 
 class _ManagePermissionsScreenState extends State<ManagePermissionsScreen> {
   String? _selectedRole;
-  final List<String> _roleList = ['Manager', 'Boss'];
+  final List<String> _roleList = ['Manager', 'Boss', 'Supervisor'];
 
   final List<List<bool>> _managePermissionCheckBox = List.generate(
     6,

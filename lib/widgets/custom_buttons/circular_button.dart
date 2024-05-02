@@ -5,7 +5,7 @@ import '../scale_size.dart';
 
 class CircularButton extends StatelessWidget {
   const CircularButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     this.iconColor,
     this.backgroundColor,
@@ -18,7 +18,7 @@ class CircularButton extends StatelessWidget {
     this.alignment,
     required this.icon,
     this.borderWidth,
-  }) : super(key: key);
+  });
 
   final VoidCallback onPressed;
   final Color? iconColor;

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:oohapp/presentation/h_my_staff_screen/model/staff_model.dart';
 import 'package:oohapp/presentation/h_my_staff_screen/staff_creation.dart';
 import 'package:oohapp/widgets/custom_appbar/detail_screen_app_bar.dart';
 import 'package:oohapp/widgets/custom_bottom_model_sheet.dart';
@@ -18,8 +19,11 @@ class MyStaffScreen extends StatefulWidget {
 }
 
 class _MyStaffScreenState extends State<MyStaffScreen> {
-  final int _totalStaff = 10;
-  bool _isStaffAvailable = false;
+  // final int _totalStaff = 10;
+
+  List<Staff> staffList = [];
+
+  dynamic result;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +36,17 @@ class _MyStaffScreenState extends State<MyStaffScreen> {
           Padding(
               padding: EdgeInsets.only(right: 16.0.w),
               child: CustomTextBtn(
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () async {
+                    result = await Navigator.push(
                         context,
                         CupertinoPageRoute(
                           builder: (context) => const StaffCreation(),
                         ));
+                    if (result != null) {
+                      setState(() {
+                        staffList.add(result);
+                      });
+                    }
                   },
                   text: '+ Add New',
                   textColor: CustomColors.buttonGreen))
@@ -202,52 +211,74 @@ class _MyStaffScreenState extends State<MyStaffScreen> {
               SizedBox(
                 height: 15.h,
               ),
-              CustomText.text(text: 'All Staff: $_totalStaff'),
+              CustomText.text(
+                  text: staffList.isEmpty
+                      ? 'All Staff 0'
+                      : 'All Staff: ${staffList.length}'),
               SizedBox(
                 height: 10.h,
               ),
-              ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _totalStaff,
-                  itemBuilder: (context, index) => Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4.0.h),
-                        child: ListTile(
-                          leading: Container(
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
+              staffList.isEmpty
+                  ? Center(
+                      child: CustomText.text(text: 'No Staff Available'),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: staffList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: 4.0.h),
+                          child: ListTile(
+                            leading: Container(
+                              clipBehavior: Clip.hardEdge,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: ClipOval(
+                                child: CustomCachedNetworkImage(
+                                    width: 45,
+                                    height: 45,
+                                    fit: BoxFit.cover,
+                                    /*imageUrl:
+                                    'https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',*/
+                                    imageUrl:
+                                        'https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                                    /*  staffList[index]
+                                            .staffProfile,*/
+                                    ),
+                              ),
                             ),
-                            child: const ClipOval(
-                              child: CustomCachedNetworkImage(
-                                  width: 45,
-                                  height: 45,
-                                  fit: BoxFit.cover,
-                                  imageUrl:
-                                      'https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+                            title: CustomText.text(
+                                text:
+                                    "${staffList[index].firstName} ${staffList[index].lastName}",
+                                fontWeight: FontWeight.w600),
+                            subtitle: CustomText.text(
+                                text: staffList[index].roleType,
+                                color: CustomColors.mediumBlack),
+                            onTap: () {},
+                            tileColor: Colors.grey.withOpacity(0.1),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10.w),
+                            visualDensity: const VisualDensity(vertical: 1),
+                            trailing: IconButton(
+                              onPressed: () {
+                                CustomSnackBar.showCustomSnackBar(context,
+                                    "${staffList[index].firstName} ${staffList[index].lastName} Removed",
+                                    backgroundColor: Colors.red);
+                                setState(() {
+                                  staffList.removeAt(index);
+                                });
+                              },
+                              icon: Icon(
+                                CupertinoIcons.delete_simple,
+                                size: 15.w,
+                              ),
                             ),
                           ),
-                          title: CustomText.text(
-                              text: 'Peter Parks', fontWeight: FontWeight.w600),
-                          subtitle: CustomText.text(
-                              text: 'Supervisor',
-                              color: CustomColors.mediumBlack),
-                          onTap: () {},
-                          tileColor: Colors.grey.withOpacity(0.1),
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 10.w),
-                          visualDensity: const VisualDensity(vertical: 1),
-                          trailing: IconButton(
-                            onPressed: () {
-
-                            },
-                            icon: Icon(
-                              CupertinoIcons.delete_simple,
-                              size: 15.w,
-                            ),
-                          ),
-                        ),
-                      ))
+                        );
+                      },
+                    )
             ],
           )),
     );

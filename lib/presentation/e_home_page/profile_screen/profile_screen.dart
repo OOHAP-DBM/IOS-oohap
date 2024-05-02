@@ -7,6 +7,7 @@ import 'package:oohapp/presentation/h_my_staff_screen/staff_creation.dart';
 import 'package:oohapp/widgets/custom_buttons/custom_text_btn.dart';
 
 import '../../h_my_staff_screen/manage_permission_screen/manage_permission_screen.dart';
+import '../../i_pos_screen/a_pos_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -16,17 +17,24 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   final ProfileMenu profileMenu = ProfileMenu();
 
   bool _expandMyStaff = false;
+  bool _expandPos = false;
 
-  late AnimationController _controller;
+  late AnimationController _staffExpandController;
+  late AnimationController _posExpandController;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _staffExpandController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+
+    _posExpandController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 400),
     );
@@ -34,7 +42,8 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _staffExpandController.dispose();
+    _posExpandController.dispose();
     super.dispose();
   }
 
@@ -106,10 +115,24 @@ class _ProfileScreenState extends State<ProfileScreen>
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
+                              builder: (context) => Scaffold(
+                                appBar: AppBar(
+                                  title: const Text('POS'),
+                                  centerTitle: true,
+                                ),
+                                backgroundColor: CustomColors.errorColor,
+                              ),
+                            ));
+                      }
+
+                      if (index == 2) {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
                               builder: (context) => const MyStaffScreen(),
                             ));
                       }
-                      if (index == 3) {
+                      if (index == 4) {
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
@@ -136,15 +159,26 @@ class _ProfileScreenState extends State<ProfileScreen>
                                       text: profileMenu
                                               .profileMenuComponents[index]
                                           ['title']),
-                                  if (index == 1 && _expandMyStaff)
+                                  if (index == 1 && _expandPos)
+                                    CustomTextBtn(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              CupertinoPageRoute(
+                                                builder: (context) =>
+                                                    const PosScreen(),
+                                              ));
+                                        },
+                                        text: 'POS Bookings',
+                                        fontWeight: FontWeight.w500,
+                                        textColor: Colors.black),
+                                  if (index == 2 && _expandMyStaff)
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         CustomTextBtn(
-                                            onPressed: () {
-
-                                            },
+                                            onPressed: () {},
                                             text: '● All Staff',
                                             fontWeight: FontWeight.w500,
                                             textColor: Colors.black),
@@ -153,7 +187,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                                               Navigator.push(
                                                   context,
                                                   CupertinoPageRoute(
-                                                    builder: (context) => const StaffCreation(),
+                                                    builder: (context) =>
+                                                        const StaffCreation(),
                                                   ));
                                             },
                                             text: '● Add Staff',
@@ -164,7 +199,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                                               Navigator.push(
                                                   context,
                                                   CupertinoPageRoute(
-                                                    builder: (context) => const ManagePermissionsScreen(),
+                                                    builder: (context) =>
+                                                        const ManagePermissionsScreen(),
                                                   ));
                                             },
                                             text: '● Manage Roles & Permission',
@@ -175,31 +211,65 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 ],
                               ),
                               const Spacer(),
+                              if (index == 2)
+                                Padding(
+                                  padding: EdgeInsets.only(right: 10.0.w),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        _expandMyStaff = !_expandMyStaff;
+                                      });
+                                      _staffExpandController.forward(from: 0.0);
+                                    },
+                                    borderRadius: BorderRadius.circular(50),
+                                    splashColor: Colors.green.withOpacity(0.5),
+                                    child: AnimatedBuilder(
+                                      animation: _staffExpandController,
+                                      builder: (context, child) {
+                                        return Transform.rotate(
+                                          angle: _staffExpandController.value *
+                                              (180 * 0.0174533),
+                                          // Convert degrees to radians
+                                          child: child,
+                                        );
+                                      },
+                                      child: Icon(
+                                        key: ValueKey(_expandMyStaff),
+                                        _expandMyStaff
+                                            ? Icons.keyboard_arrow_down_sharp
+                                            : Icons.keyboard_arrow_up_sharp,
+                                        size: 30.w,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               if (index == 1)
-                                  Padding(
+                                Align(
+                                  child: Padding(
                                     padding: EdgeInsets.only(right: 10.0.w),
                                     child: InkWell(
                                       onTap: () {
                                         setState(() {
-                                          _expandMyStaff = !_expandMyStaff;
+                                          _expandPos = !_expandPos;
                                         });
-                                        _controller.forward(from: 0.0);
+                                        _posExpandController.forward(from: 0.0);
                                       },
                                       borderRadius: BorderRadius.circular(50),
-                                      splashColor: Colors.green.withOpacity(0.5),
+                                      splashColor:
+                                          Colors.green.withOpacity(0.5),
                                       child: AnimatedBuilder(
-                                        animation: _controller,
+                                        animation: _posExpandController,
                                         builder: (context, child) {
                                           return Transform.rotate(
-                                            angle: _controller.value *
+                                            angle: _posExpandController.value *
                                                 (180 * 0.0174533),
                                             // Convert degrees to radians
                                             child: child,
                                           );
                                         },
                                         child: Icon(
-                                          key: ValueKey(_expandMyStaff),
-                                          _expandMyStaff
+                                          key: ValueKey(_expandPos),
+                                          _expandPos
                                               ? Icons.keyboard_arrow_down_sharp
                                               : Icons.keyboard_arrow_up_sharp,
                                           size: 30.w,
@@ -207,6 +277,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                                       ),
                                     ),
                                   ),
+                                  alignment: AlignmentDirectional.centerEnd,
+                                ),
                             ],
                           ),
                         ),

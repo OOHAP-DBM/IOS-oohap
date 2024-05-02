@@ -4,7 +4,7 @@ class CustomDropdown extends StatelessWidget {
   const CustomDropdown({
     super.key,
     this.dropdownValue,
-    required this.onChanged,
+     this.onChanged,
     this.color,
     this.height,
     this.width,

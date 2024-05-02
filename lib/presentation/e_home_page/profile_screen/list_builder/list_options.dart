@@ -9,6 +9,10 @@ class ProfileMenu extends StatelessWidget {
       'title': 'My Bookings',
     },
     {
+      'icon': Icons.task,
+      'title': 'POS',
+    },
+    {
       'icon': Icons.group_sharp,
       'title': 'My Staff',
     },
@@ -40,6 +44,7 @@ class ProfileMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(left: 14.0),
       child: ListView.builder(
@@ -60,9 +65,9 @@ class ProfileMenu extends StatelessWidget {
                 ),
               ],
             ),
-            subtitle: const SizedBox(
-              width: double.infinity,
-              child: Padding(
+            subtitle:  SizedBox(
+              width: size.width,
+              child: const Padding(
                 padding: EdgeInsets.only(left: 40.0),
                 child: Divider(),
               ),

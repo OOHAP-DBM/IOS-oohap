@@ -242,38 +242,44 @@ class DashboardScreen extends StatelessWidget {
                   mainAxisSpacing: 8.0,
                 ),
                 itemBuilder: (context, index) {
-                  return Container(
-                    width: size.width * 0.35,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-                    decoration: BoxDecoration(
-                      //  color: containerColor,
-                      color: itemColors[index % itemColors.length],
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20.r),
-                      ),
+                  return InkWell(
+                    onTap: () {},
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20.r),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText.text(
-                            text: itemList[index]['title'].toString(),
-                            //    text: "Total\nEarnings",
-                            fontSize: 14.sp),
-                        SizedBox(height: 10.h),
-                        Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional.bottomEnd,
-                            child: CustomText.text(
-                                text: index == 0
-                                    ? "₹ ${itemList[index]['value'].toString()}"
-                                    : itemList[index]['value'].toString(),
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
+                    child: Container(
+                      width: size.width * 0.35,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 15.w, vertical: 10.h),
+                      decoration: BoxDecoration(
+                        //  color: containerColor,
+                        color: itemColors[index % itemColors.length],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20.r),
                         ),
-                      ],
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomText.text(
+                              text: itemList[index]['title'].toString(),
+                              //    text: "Total\nEarnings",
+                              fontSize: 14.sp),
+                          SizedBox(height: 10.h),
+                          Expanded(
+                            child: Align(
+                              alignment: AlignmentDirectional.bottomEnd,
+                              child: CustomText.text(
+                                  text: index == 0
+                                      ? "₹ ${itemList[index]['value'].toString()}"
+                                      : itemList[index]['value'].toString(),
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),
@@ -343,6 +349,13 @@ class DashboardScreen extends StatelessWidget {
             ),
 
             //SaleChart(),
+
+            SizedBox(
+                width: size.width,
+                height: size.height * 0.3,
+                child: BarChartSample2()),
+
+            SizedBox(height: 10.h,),
           ],
         ),
       ),
